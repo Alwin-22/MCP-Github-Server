@@ -6,10 +6,10 @@ import { setupMcpServer } from "./server.js";
 const app = express();
 app.use(cors());
 
-const mcpServer = setupMcpServer();
 const transports = new Map<string, SSEServerTransport>();
 
 app.get("/sse", async (req, res) => {
+  const mcpServer = setupMcpServer();
   const transport = new SSEServerTransport("/messages", res);
   const sessionId = transport.sessionId;
 
